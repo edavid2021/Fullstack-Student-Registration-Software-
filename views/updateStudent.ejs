@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Student</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--includes navbar.ejs-->
+    <%- include('partials/navbar') %>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Update Student</h1>
+      <p>
+        Enter the student's first name, last name, gpa, and enrolled status.
+      </p>
+
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" name="fname" /><br /><br />
+
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" name="lname" /><br /><br />
+
+      <label for="gpa">GPA:</label>
+      <input type="text" id="gpa" name="gpa" /><br /><br />
+
+      <label for="enrolled">Enrollment Status:</label>
+      <select id="enrolled" name="enrolled">
+        <option value="true">True</option>
+        <option value="false">False</option>
+      </select>
+
+      <label for="rID">Record ID:</label>
+      <input type="text" id="rID" name="rID" /><br /><br />
+
+      <button class="btn-primary" onclick="updateStudent()">
+        Update Students
+      </button>
+    </div>
+    <br />
+    <br />
+    <div id="mydiv" name="mydiv"></div>
+    <script>
+      function updateStudent() {
+        var fname_val = $("#fname").val();
+        var lname_val = $("#lname").val();
+        var gpa_val = $("#gpa").val();
+        var enrolled_val = $("#enrolled").val();
+        var rID_val = $("#rID").val();
+        var urla = "http://localhost:5678/students/" + rID_val;
+        $.ajax({
+          url: urla,
+          type: "put",
+          data: {
+            first_name: fname_val,
+            last_name: lname_val,
+            gpa: gpa_val,
+            enrolled: enrolled_val,
+          },
+          success: function () {
+            $("#mydiv").text("Successfully Updated");
+          },
+          error: function (xhr) {
+            $("#mydiv").text("error: " + xhr);
+          },
+        });
+      }
+    </script>
+
+    <footer class="container-fluid text-center">
+      <p>Made by Emmanuel (Manny) David</p>
+      <p>Z23619905</p>
+    </footer>
+  </body>
+</html>

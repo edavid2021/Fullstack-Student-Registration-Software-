@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Display Student</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #687aa1;
+        color: white;
+      }
+    </style>
+    <!--includes navbar.ejs-->
+    <%- include('partials/navbar') %>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Display Student</h1>
+      <p>Enter the student's record ID.</p>
+
+      <label for="rID"> Get a Student by ID:</label>
+      <input type="text" id="rID" name="rID" /><br /><br />
+
+      <button class="btn-primary" onclick="displayStudent()">Submit</button>
+      <br />
+      <br />
+      <table id="studentTable">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>ID</th>
+            <th>GPA</th>
+            <th>Enrolled</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <br />
+      <!--button that clears the table-->
+      <button class="btn-primary" onclick="clearTable()">Clear Table</button>
+
+      <div id="mydiv" name="mydiv"></div>
+      <script>
+        function displayStudent() {
+          var rID_val = $("#rID").val();
+          var urla = "http://localhost:5678/students/" + rID_val;
+          $.ajax({
+            url: urla,
+            type: "get",
+            dataType: "json",
+            success: function (response) {
+              var cont = response;
+              console.log(typeof cont);
+              var obj = JSON.stringify(response);
+              var temp = response;
+              console.log(obj);
+              const table = document.getElementById("studentTable");
+              console.log(temp);
+              const row = table.insertRow();
+              // Add cells to the row
+              const firstNameCell = row.insertCell();
+              firstNameCell.textContent = temp.first_name;
+
+              const lastNameCell = row.insertCell();
+              lastNameCell.textContent = temp.last_name;
+
+              const idCell = row.insertCell();
+              idCell.innerHTML = temp.record_id;
+
+              const gpaCell = row.insertCell();
+              gpaCell.textContent = temp.gpa;
+
+              const enrolledCell = row.insertCell();
+              enrolledCell.textContent = temp.enrolled;
+            },
+            error: function (xhr) {
+              $("#mydiv").text("error: " + xhr);
+            },
+          });
+        }
+
+        function clearTable() {
+          var tableHeaderRowCount = 1;
+          var table = document.getElementById("studentTable");
+          var rowCount = table.rows.length;
+          for (var i = tableHeaderRowCount; i < rowCount; i++) {
+            table.deleteRow(tableHeaderRowCount);
+          }
+        }
+      </script>
+    </div>
+    <footer class="container-fluid text-center">
+      <p>Made by Emmanuel (Manny) David</p>
+      <p>Z23619905</p>
+    </footer>
+  </body>
+</html>

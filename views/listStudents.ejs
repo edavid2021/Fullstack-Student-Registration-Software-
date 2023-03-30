@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List Students</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #687aa1;
+        color: white;
+      }
+    </style>
+    <!--includes navbar.ejs-->
+    <%- include('partials/navbar') %>
+  </head>
+  <body>
+    <div class="container">
+      <h1>List Students</h1>
+      <p>Click the button to list all students.</p>
+
+      <button class="btn-primary" onclick="listStudents()">
+        List Students
+      </button>
+
+      <br />
+      <br />
+
+      <table id="studentTable">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>ID</th>
+            <th>GPA</th>
+            <th>Enrolled</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <br />
+      <!--button that clears the table-->
+      <button class="btn-primary" onclick="clearTable()">Clear Table</button>
+
+      <script>
+        function listStudents() {
+          let params = window.location.search; //gets the query string
+          console.log(params);
+
+          var urla = "http://localhost:5678/students" + params;
+
+          $.ajax({
+            url: urla,
+            type: "get",
+            success: function (response) {
+              var temp = response;
+              console.log(temp.length + " students found");
+
+              const table = document.getElementById("studentTable");
+
+              // Loop through the JSON data and add rows to the table
+              for (let i = 0; i < temp.length; i++) {
+                const row = table.insertRow();
+                // Add cells to the row
+                const firstNameCell = row.insertCell();
+                firstNameCell.textContent = temp[i].first_name;
+
+                const lastNameCell = row.insertCell();
+                lastNameCell.textContent = temp[i].last_name;
+
+                const idCell = row.insertCell();
+                idCell.textContent = temp[i]._id;
+
+                const gpaCell = row.insertCell();
+                gpaCell.textContent = temp[i].gpa;
+
+                const enrolledCell = row.insertCell();
+                enrolledCell.textContent = temp[i].enrolled;
+
+                console.log(temp[i]); //keeps track of everything in the console
+              }
+            },
+            error: function (xhr) {
+              $("#mydiv").text("error: " + xhr);
+            },
+          });
+        }
+        //function that clears the table
+        function clearTable() {
+          var table = document.getElementById("studentTable");
+          var rowCount = table.rows.length;
+
+          for (var i = rowCount - 1; i > 0; i--) {
+            table.deleteRow(i);
+          }
+        }
+      </script>
+    </div>
+
+    <footer class="container-fluid text-center">
+      <p>Made by Emmanuel (Manny) David</p>
+      <p>Z23619905</p>
+    </footer>
+  </body>
+</html>
