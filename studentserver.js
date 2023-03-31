@@ -210,4 +210,4 @@ app.get('/', function (req, res) {
 });
 
 app.listen(5678); //start the server
-console.log('Server is running...');
+console.log('Server is running...'); //the url is http://localhost:5678/
