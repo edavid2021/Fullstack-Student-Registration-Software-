@@ -14,10 +14,11 @@ app.set('view engine', 'ejs');
 //mongoose
 const mongoose = require('mongoose');
 
-//app.us(cors({
-  //origin: 'http://localhost:3000',
-  //credentials: true
-//}));
+//cors
+app.use(cors({
+  origin: '*',
+}));
+
 app.use(express.static('./public'));
 
 //connecting mongo through mongoose

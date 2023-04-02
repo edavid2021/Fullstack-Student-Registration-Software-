@@ -16,6 +16,7 @@ function Navi() {
                 <Nav className="me-auto">
                         <Nav.Link> <Link to="/">Index</Link></Nav.Link>
                         <Nav.Link><Link to="/add">Add Student</Link></Nav.Link>
+                            
                         
                     </Nav>
         </Navbar.Collapse>
