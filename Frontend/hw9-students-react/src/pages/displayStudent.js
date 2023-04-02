@@ -35,23 +35,21 @@ function Display() {
                         </tr>
                     </thead>
                     {studentData._id&&<tbody>
-        {
-          <tr key={studentData._id}>
-            <td>{studentData._id}</td>
-            <td>{studentData.first_name}</td>
-            <td>{studentData.last_name}</td>
-            <td>{studentData.gpa}</td>
-            <td>{studentData.enrolled.toString()}</td>
-          </tr>
-        }
+                        {
+                        <tr key={studentData._id}>
+                            <td>{studentData._id}</td>
+                            <td>{studentData.first_name}</td>
+                            <td>{studentData.last_name}</td>
+                            <td>{studentData.gpa}</td>
+                            <td>{studentData.enrolled.toString()}</td>
+                        </tr>
+                        }
                     </tbody>}
                 </table>
-                
 
             </React.Fragment>
     
         )
-    
 
 }
 
