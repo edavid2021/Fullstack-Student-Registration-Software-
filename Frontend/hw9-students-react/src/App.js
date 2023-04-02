@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
 import Home from './pages/home';
 import Add from './pages/addStudent'
+import Update from './pages/updateStudents'
 
 
 function App() {
@@ -13,9 +14,9 @@ function App() {
     
     <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/add' element={<Add/>} />
+        <Route path='/add' element={<Add />} />
+        <Route path='/update' element={<Update />} />
         {/* <Route path='/' element={</>} />
-        <Route path='/' element={</>} />
         <Route path='/' element={</>} /> */}
     </Routes>
     </Router>
