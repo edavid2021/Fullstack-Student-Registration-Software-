@@ -6,6 +6,7 @@ import Home from './pages/home';
 import Add from './pages/addStudent'
 import Update from './pages/updateStudents'
 import Delete from './pages/deleteStudent'
+import Display from './pages/displayStudent'
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Route path='/add' element={<Add />} />
         <Route path='/update' element={<Update />} />
         <Route path='/delete' element={<Delete />} />
-        {/* <Route path='/display' element={<Display />} /> */}
+        <Route path='/display' element={<Display />} />
     </Routes>
     </Router>
     </React.Fragment>
