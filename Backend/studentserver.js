@@ -127,7 +127,16 @@ function readFiles(files,arr,res) {
     }
   });  
 }
-
+/**
+ * gets all student records from the MongoDB database
+ * @function GET_METHOD
+ * @param {string} record_id - record id of student
+ * @param {string} first_name - first name of student
+ * @param {string} last_name - last name of student
+ * @param {number} gpa - gpa of student
+ * @param {boolean} enrolled - enrolled status of student
+ * @returns {object} - returns a json object with record_id and message
+ */
 app.get('/students', async function (req, res) {
   let { first, last } = req.query;//gets the query parameters
 
@@ -150,6 +159,20 @@ app.get('/students', async function (req, res) {
 });
 
 /**
+ * gets all student records from the MongoDB database through last name
+ * @function GET_METHOD
+ * @param {string} last_name - last name of student
+ * @returns {object} - returns a json object with record_id and message
+ */
+app.get('/get/:lastname', async function (req, res) {
+  // View all students if no query parameters are provided
+  var regexp = new RegExp("^" + req.params.lastname);
+  let students = await Model.find({last_name:regexp});
+  res.status(200).send(students);
+
+  });
+
+/**
  * updates a student record file from the MongoDB database
  * @function PUT_METHOD
  * @param {string} record_id - record id of student
@@ -161,6 +184,7 @@ app.get('/students', async function (req, res) {
  */
 app.put('/students/:record_id', async function (req, res) {
   //update the file by record_id
+  
   let students = await Model.updateOne({ _id: req.params.record_id }, {first_name: req.body.first_name, last_name: req.body.last_name, gpa: req.body.gpa, enrolled: req.body.enrolled});
   return res.status(200).send(students);
 
