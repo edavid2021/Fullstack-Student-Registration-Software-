@@ -15,34 +15,43 @@ function List() {
 
     return (
         <React.Fragment>
-            <h1>List Students</h1>
-            <form onSubmit={submit}>
-                <button type="submit">List</button>
-            </form>
+            <div className="container">
+                <h1 class="text-center">List Students</h1>
+            </div>
 
-            <table class="table" id="studentTable">
-                <thead>
-                    <tr>
-                        <th scope = "col">ID</th>
-                        <th scope = "col">First Name</th>
-                        <th scope = "col">Last Name</th>
-                        <th scope = "col">GPA</th>
-                        <th scope = "col">Enrolled</th>
-                    </tr>
-                </thead>
-                {studentData.map((student) => (
-                    <tbody>
-                        <tr key={student._id}>
-                            <td>{student._id}</td>
-                            <td>{student.first_name}</td>
-                            <td>{student.last_name}</td>
-                            <td>{student.gpa}</td>
-                            <td>{student.enrolled.toString()}</td>
+            <div className="container">
+                <form onSubmit={submit}>
+                    <button class="btn btn-primary btn-lg" type="submit">List</button>
+                </form>
+            </div>
+
+            <br></br>
+            <br></br>
+
+            <div className="container">
+                <table class="table" id="studentTable">
+                    <thead>
+                        <tr>
+                            <th scope = "col">ID</th>
+                            <th scope = "col">First Name</th>
+                            <th scope = "col">Last Name</th>
+                            <th scope = "col">GPA</th>
+                            <th scope = "col">Enrolled</th>
                         </tr>
-                    </tbody>
-                ))}
-            </table>
-
+                    </thead>
+                    {studentData.map((student) => (
+                        <tbody>
+                            <tr key={student._id}>
+                                <td>{student._id}</td>
+                                <td>{student.first_name}</td>
+                                <td>{student.last_name}</td>
+                                <td>{student.gpa}</td>
+                                <td>{student.enrolled.toString()}</td>
+                            </tr>
+                        </tbody>
+                    ))}
+                </table>
+            </div>
         </React.Fragment>
 
     )

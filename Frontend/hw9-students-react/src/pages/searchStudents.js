@@ -7,23 +7,39 @@ function Search() {
     function submitHandler(event) {
         event.preventDefault(); // Prevents page from reloading
         submitForm();
+        clearForm();
     }
 
     async function submitForm() {
         const data = await axios.get('http://localhost:5678/get/'+document.getElementById('lname').value).then((response) => { setStudentData(response.data) });
     }
+
+    function clearForm() {
+        document.getElementById('lname').value = '';
+    }
+
     return (
         <React.Fragment>
-            <h1>Search Students</h1>
-            <form onSubmit={submitHandler}>
-                <label for="lname">Last Name:</label>
-                <input type="text" id="lname" name="lname"></input>
+            <div class="container">
+                <h1 class="text-center">Search Students</h1>
+            </div>
+
+            <div class="container">
+                <form onSubmit={submitHandler}>
+                    
+            <div className="form-group">
+                <label for="lname"></label>
+                <input class="form-control" type="text" id="lname" name="lname" placeholder="Enter Last Name" />
+            </div>
                     <br></br>
-                <button>Search</button>
+                <button class="btn btn-primary btn-lg">Search</button>
             </form>
-            <form>
-                
-            </form>
+            </div>
+
+            <br></br>
+            <br></br>
+
+            <div class="container">
             <table class="table" id="studentTable">
                 <thead>
                     <tr>
@@ -46,6 +62,7 @@ function Search() {
                     </tbody>
                 ))}
             </table>
+            </div>
 
         </React.Fragment>
 
