@@ -186,7 +186,7 @@ app.put('/students/:record_id', async function (req, res) {
   //update the file by record_id
   
   let students = await Model.updateOne({ _id: req.params.record_id }, {first_name: req.body.first_name, last_name: req.body.last_name, gpa: req.body.gpa, enrolled: req.body.enrolled});
-  return res.status(200).send(students);
+  return res.status(200).send("Student has been updated sucessfully");
 
 }); 
 
@@ -201,9 +201,13 @@ app.put('/students/:record_id', async function (req, res) {
  * @returns {object} - returns a json object with record_id and message
  */
 app.delete('/students/:record_id', async function (req, res) { //delete the file by record_id 
+  const data = await Model.findOne({ _id: req.params.record_id });
+  if (!data) {
+    return res.status(200).send("Student does not exist");
+  }
   //finds the student and deletes it
   let students = await Model.findOneAndDelete({ _id: req.params.record_id }); 
-  return res.status(200).send(students);
+  return res.status(200).send("deleted");
 
 });
 
