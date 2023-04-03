@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.7rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.navbar a.active {
+    text-decoration: underline;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
