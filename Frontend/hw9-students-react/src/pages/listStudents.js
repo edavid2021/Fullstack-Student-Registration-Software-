@@ -20,7 +20,7 @@ function List() {
             </div>
 
             <div className="container">
-                <form onSubmit={submit}>
+                <form onSubmit={submit}> {/*onSubmit is a function that is called when the form is submitted*/}
                     <button class="btn btn-primary btn-lg" type="submit">List</button>
                 </form>
             </div>
