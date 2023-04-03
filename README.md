@@ -2,6 +2,8 @@
 
 #### Emmanuel David / Z23619905
 
+<img src= "ezgif.com-video-to-gif.gif">
+
 ##### This assignment is using the studentserver.js server from previous assignments and I was able to connect it to a react app as the front end. In doing this, I was able to:
 
 * Add a student to the MongoDB Database
