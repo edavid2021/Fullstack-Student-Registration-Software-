@@ -1,8 +1,10 @@
-# Studentserver.js with React
+# AWS deployment of Fullstack Student Registration Application
+
+http://3.129.92.113/
 
 #### Emmanuel David / Z23619905
 
-##### This assignment is using the studentserver.js server from previous assignments and I was able to connect it to a react app as the front end. In doing this, I was able to:
+##### This project which is comprised of a nodejs backend and a react frontend, allows users to:
 
 * Add a student to the MongoDB Database
 * Display a single student and provide
