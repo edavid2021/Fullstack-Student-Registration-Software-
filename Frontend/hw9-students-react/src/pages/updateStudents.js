@@ -12,7 +12,7 @@ function Update() {
     }
 
     async function submitForm() {
-        const data = await axios.put('http://localhost:5678/students/' + document.getElementById('sid').value, {
+        const data = await axios.put('http://3.139.64.182:5678/students/' + document.getElementById('sid').value, {
             id: document.getElementById('sid').value,
             first_name: document.getElementById('fname').value,
             last_name: document.getElementById('lname').value,

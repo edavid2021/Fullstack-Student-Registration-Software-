@@ -9,7 +9,7 @@ function List() {
     }
 
     async function submitForm() {
-        const data = await axios.get('http://localhost:5678/students').then((response) => { setStudentData(response.data) });
+        const data = await axios.get('http://3.139.64.182:5678/students').then((response) => { setStudentData(response.data) });
         console.log(data);
     }
 

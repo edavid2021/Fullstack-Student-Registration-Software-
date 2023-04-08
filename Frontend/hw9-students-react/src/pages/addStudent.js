@@ -17,7 +17,7 @@ function Add() {
     //submits the form
     async function submitForm() {
         //event.preventDefault(); // Prevents page from reloading
-        const data = await axios.post('http://localhost:5678/students', {
+        const data = await axios.post('http://3.139.64.182:5678/students', {
             id: document.getElementById('sid').value,
             first_name: document.getElementById('fname').value,
             last_name: document.getElementById('lname').value,

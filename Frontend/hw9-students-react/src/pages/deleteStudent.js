@@ -12,7 +12,7 @@ function Delete() {
     }
 
     async function submitForm() {
-        const data = await axios.delete('http://localhost:5678/students/' + document.getElementById('sid').value)
+        const data = await axios.delete('http://3.139.64.182:5678/students/' + document.getElementById('sid').value)
         setRes(data.data);
         console.log(data.data);
     }
